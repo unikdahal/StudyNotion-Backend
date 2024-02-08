@@ -1,5 +1,5 @@
 const Course = require("../models/Course");
-const Tag = require("../models/tags.model.js");
+const Category = require("../models/category.model.js");
 const User = require("../models/user.model.js");
 const { ApiResponse } = require("../utils/ApiResponse.js");
 const {
@@ -13,7 +13,7 @@ const { uploadImageToCloudinary } = require("../utils/imageUploader.js");
 exports.createCourse = async (req, res) => {
   try {
     //fetch data
-    const { courseName, courseDescription, whatYouWillLearn, price, tag } =
+    const { courseName, courseDescription, whatYouWillLearn, price, category } =
       req.body;
 
     //get thumbnail
@@ -25,7 +25,7 @@ exports.createCourse = async (req, res) => {
       !courseDescription ||
       !whatYouWillLearn ||
       !price ||
-      !tag
+      !category
     ) {
       throw new ApiError(400, "All fields are required");
     }
@@ -40,8 +40,8 @@ exports.createCourse = async (req, res) => {
       );
     }
 
-    // const tagDetails = await Tag.findById(tag);
-    // if (!tagDetails) {
+    // const categoryDetails = await category.findById(category);
+    // if (!categoryDetails) {
     //   throw new error(
     //     ClientErrorsCodes.NOT_FOUND,
     //     "Instructor Details not Found"
@@ -60,7 +60,7 @@ exports.createCourse = async (req, res) => {
       instructor: instructorDetails._id,
       whatYouWillLearn,
       price,
-      tag,
+      category,
       thumbnail: thumbnailImage.secure_url,
     });
 

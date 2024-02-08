@@ -1,6 +1,6 @@
 const Tag = require("../models/tags.model.js");
 const { ApiError } = require("../utils/ApiError.js");
-const { ApiResponse } = require("../utils/ApiResponse");
+const { ApiResponse } = require("../utils/ApiResponse.js");
 
 exports.createTag = async (req, res) => {
   try {
